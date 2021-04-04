@@ -42,8 +42,8 @@ func MakeInstallGitLab() *cobra.Command {
 		kubeConfigPath, _ := cmd.Flags().GetString("kubeconfig")
 
 		overrides := map[string]string{}
-		overrides["global.domain"], _ = cmd.Flags().GetString("domain")
-		overrides["global.ip"], _ = cmd.Flags().GetString("external-ip")
+		overrides["global.hosts.domain"], _ = cmd.Flags().GetString("domain")
+		overrides["global.hosts.externalIP"], _ = cmd.Flags().GetString("external-ip")
 
 		ceEdition, _ := cmd.Flags().GetBool("ce")
 		noInstallPgsql, _ := cmd.Flags().GetBool("no-pgsql")
@@ -55,11 +55,11 @@ func MakeInstallGitLab() *cobra.Command {
 		}
 
 		if noInstallPgsql {
-			overrides["global.postgresql.install"] = "false"
+			overrides["postgresql.install"] = "false"
 		}
 
 		if noInstallRedis {
-			overrides["global.redis.install"] = "false"
+			overrides["redis.install"] = "false"
 		}
 
 		if noInstallMinio {
